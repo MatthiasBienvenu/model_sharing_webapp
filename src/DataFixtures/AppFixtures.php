@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
                 // Future-proof: unique fields if they exist
                 $model->setName($faker->words(3, true)); // e.g. "neural predictor net"
                 // $model->setDescription($faker->paragraph()); // unique text per model
-                //$model->setCode($this->generateRandomTorchCode($faker)); TODO: implement generateRandomTorchCode
+                // $model->setCode($this->generateRandomTorchCode($faker)); TODO: implement generateRandomTorchCode
                 $model->setPytorchCode($faker->text());
 
                 $manager->persist($model);

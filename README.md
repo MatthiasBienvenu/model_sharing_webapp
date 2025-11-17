@@ -31,13 +31,19 @@ Install symfony project dependencies
 symfony composer install
 ```
 
-# Useful commands
-
+Create the database file and generate the tables and index
 ```bash
-# create the database file and generate the tables and index
+mkdir -p var/data
 symfony console doctrine:database:create
 symfony console doctrine:schema:create
 ```
+
+Load the fixtures
+```bash
+symfony console doctrine:fixtures:load
+```
+
+# Useful commands
 
 ```bash
 # tries to update the tables and index without removing data
