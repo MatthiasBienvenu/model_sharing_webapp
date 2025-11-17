@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vault{% endblock %}
+
+{% block body %}
+    <h1>Vault</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vault.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vault_index') }}">back to list</a>
+
+    <a href="{{ path('app_vault_edit', {'id': vault.id}) }}">edit</a>
+
+    {{ include('vault/_delete_form.html.twig') }}
+{% endblock %}

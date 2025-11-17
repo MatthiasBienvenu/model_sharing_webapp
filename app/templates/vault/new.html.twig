@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Vault{% endblock %}
+
+{% block body %}
+    <h1>Create new Vault</h1>
+
+    {{ include('vault/_form.html.twig') }}
+
+    <a href="{{ path('app_vault_index') }}">back to list</a>
+{% endblock %}

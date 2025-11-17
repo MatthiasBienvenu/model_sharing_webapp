@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\Vault;
+use App\Repository\VaultRepository;
+
+final class VaultController extends AbstractController
+{
+    #[Route('/vaults', name: 'app_vaults')]
+    public function index(VaultRepository $vaultRepository): Response
+    {
+        return $this->render('vault/index.html.twig', [
+            'vaults' => $vaultRepository->findAll(),
+        ]);
+    }
+
+
+    /**
+     * Finds and displays a vault entity.
+     */
+    #[Route('/vaults/{id}', name: 'vault_show', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function showAction(Vault $vault): Response
+    {
+        $htmlpage = '<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>vault n° ' . $vault->getId() . ' details</title>
+    </head>
+    <body>
+        <h2>vault Details :</h2>
+        <ul>
+        <dl>';
+
+        //$htmlpage .= '<dt>vault</dt><dd>' . $vault->getTitle() . '</dd>';
+        //$htmlpage .= '<dt>Date de création</dt> <dd> ' . $vault->getCreated()->format('Y-m-d') . '</dd>';
+        //$htmlpage .= '<dt>Date de modification</dt> <dd> '. $vault->getUpdated()->format('Y-m-d') . '</dd>';
+        //$htmlpage .= '<dt>Satus</dt><dd>' . ($vault->isCompleted() ? '	Terminé ' : ' En cours ' ) . '</dd>';
+        $htmlpage .= join(
+            "\n",
+            array_map(
+                function ($model) {
+                    return $model->getId() . ', ' . $model->getName() . ', ' . $model->getPytorchCode();
+                },
+                $vault
+                    ->getModels()
+                    ->toArray()
+            )
+        );
+
+        $htmlpage .= '</dl>';
+        $htmlpage .= '</ul></body></html>';
+
+        return new Response(
+            $htmlpage,
+            Response::HTTP_OK,
+            array('content-type' => 'text/html')
+        );
+    }
+}

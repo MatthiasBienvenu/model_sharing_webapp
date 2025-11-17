@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My cool models
+{% endblock %}
+
+{% block body %}
+	<style>
+		.content {
+			max-width: 900px;
+			margin: 3rem auto;
+			padding: 0 1rem;
+			line-height: 1.7;
+			text-align: center;
+		}
+
+		.features {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.feature {
+			background: white;
+			border-radius: 0.75rem;
+			padding: 1.5rem;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+
+		.feature:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.feature h3 {
+			color: #111827;
+			font-size: 1.25rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.feature p {
+			color: #6b7280;
+			font-size: 0.95rem;
+		}
+
+		footer {
+			text-align: center;
+			padding: 2rem;
+			color: #6b7280;
+			font-size: 0.9rem;
+			background-color: #f3f4f6;
+			margin-top: 3rem;
+		}
+	</style>
+
+	<section class="content">
+		<h2>Welcome to My cool models</h2>
+		<p>This is kind of a work in progress thing right now and there are supposed to be some cool visualizations of models or something here but not yet so just look around and imagine them maybe. However this page is still cool imo...
+		</p>
+
+		<div class="features">
+			<div class="feature">
+				<h3>🧠 Neural Networks</h3>
+				<p>Layers, neurons, connections ... all the things you might expect or maybe not. We'll see what I manage to do...</p>
+			</div>
+			<div class="feature">
+				<h3>🔥 Pytorch Code</h3>
+				<p>See different AI architectures and their associated pytorch code. This surely isn't that hard to implement. The only hard thing is syntax highlight.</p>
+			</div>
+			<div class="feature">
+				<h3>📊 Model Insights</h3>
+				<p>Charts, graphs, and diagrams that probably mean something important someday. I hope I will be able to add a framework that vizualises torch nn...</p>
+			</div>
+
+		</div>
+	</section>
+
+	<footer>
+		<p>©
+			{{ "now"|date("Y") }}
+			My cool models — yeah I do have cool models indeed.</p>
+	</footer>
+{% endblock %}
