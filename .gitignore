@@ -19,6 +19,9 @@
 /var/log/*
 !var/log/.gitkeep
 
+# Sqlite db files
+/var/data/*
+
 # Parameters
 /app/config/parameters.yml
 /app/config/parameters.ini
