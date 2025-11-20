@@ -21,6 +21,10 @@ class Vault
     #[ORM\OneToMany(targetEntity: Model::class, mappedBy: 'vault', orphanRemoval: true)]
     private Collection $models;
 
+    #[ORM\OneToOne(mappedBy: 'vault')]
+    private ?Member $member = null;
+
+
     public function __construct()
     {
         $this->models = new ArrayCollection();
@@ -59,5 +63,21 @@ class Vault
         }
 
         return $this;
+    }
+
+    public function getMember(): ?Member
+    {
+        return $this->member;
+    }
+
+    public function setMember(?Member $member): static
+    {
+        $this->member = $member;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getId();
     }
 }

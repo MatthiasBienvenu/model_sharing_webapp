@@ -10,6 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Form\ModelType;
+use App\Entity\Model;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 
 #[Route('/vault')]
 final class VaultController extends AbstractController

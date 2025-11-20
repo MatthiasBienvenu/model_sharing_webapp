@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ model.name }} - Model{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1>{{ model.name }}</h1>
+
+    <div>
+        <p><strong>ID:</strong> {{ model.id }}</p>
+    </div>
+
+    <h2>PyTorch Code</h2>
+    <pre><code>{{ model.pytorchCode }}</code></pre>
+
+    <a href="{{ path('app_showcase_show', { 'id': showcase.id}) }}">back to showcase</a>
+</div>
+{% endblock %}

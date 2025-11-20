@@ -14,9 +14,35 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_vault_index') }}">back to list</a>
+    <h2>Models</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for model in vault.models %}
+            <tr>
+                <td>{{ model.id }}</td>
+                <td>{{ model.name }}</td>
+                <td>{{ model.description }}</td>
+                <td>
+                    <a href="{{ path('app_model_show', {'id': model.id}) }}">show</a>
+                    <a href="{{ path('app_model_edit', {'id': model.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
+    <a href="{{ path('app_member_show', {'id': vault.member.id}) }}">back to member</a> |
     <a href="{{ path('app_vault_edit', {'id': vault.id}) }}">edit</a>
-
-    {{ include('vault/_delete_form.html.twig') }}
 {% endblock %}

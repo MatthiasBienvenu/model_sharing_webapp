@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Model;
+use App\Entity\Vault;
 use App\Form\ModelType;
 use App\Repository\ModelRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,10 +23,10 @@ final class ModelController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_model_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    #[Route('/new/{id}', name: 'app_model_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, Vault $vault, EntityManagerInterface $entityManager): Response {
         $model = new Model();
+        $model->setVault($vault);
         $form = $this->createForm(ModelType::class, $model);
         $form->handleRequest($request);
 
@@ -33,7 +34,11 @@ final class ModelController extends AbstractController
             $entityManager->persist($model);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_model_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_vault_show',
+                ['id' => $vault->getId()],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render('model/new.html.twig', [
@@ -59,7 +64,7 @@ final class ModelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_model_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_model_index', ['id' => $model->getVault()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('model/edit.html.twig', [
@@ -76,6 +81,6 @@ final class ModelController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_model_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_model_index', ['id' => $model->getVault()->getId()], Response::HTTP_SEE_OTHER);
     }
 }

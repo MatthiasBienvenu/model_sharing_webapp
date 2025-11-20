@@ -53,3 +53,9 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+# php LSP
+.phpactor.json
+
+# images
+/public/uploads

@@ -38,8 +38,8 @@ symfony console doctrine:database:create
 symfony console doctrine:schema:create
 ```
 
-Load the fixtures
 ```bash
+# Load the fixtures
 symfony console doctrine:fixtures:load
 ```
 
@@ -55,9 +55,7 @@ symfony console doctrine:schema:update
 symfony console doctrine:database:drop --force
 symfony console doctrine:database:create
 symfony console doctrine:schema:create
-```
 
-```bash
 # load the test data
 symfony console doctrine:fixtures:load
 ```

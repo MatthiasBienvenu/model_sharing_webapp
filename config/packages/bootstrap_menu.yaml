@@ -2,9 +2,34 @@ bootstrap_menu:
   menus:
     main:
       items:
-        Vault:
+        showcases:
+          label: 'Showcases'
+          route: 'app_showcase_index'
+    
+    admin:
+      items:
+        members:
+          label: 'Members'
+          route: 'app_member_index'
+          roles: [ 'ROLE_ADMIN' ]
+        models:
+          label: 'Models'
+          route: 'app_model_index'
+          roles: [ 'ROLE_ADMIN' ]
+        vaults:
           label: 'Vaults'
           route: 'app_vault_index'
-        Model:
-          label: 'Model'
-          route: 'app_model_index'
+          roles: [ 'ROLE_ADMIN' ]
+    
+    anonymousaccount:
+      items:
+        login:
+          label: 'Login'
+          route: 'app_login'
+    
+    account:
+      items:
+        logout:
+          label: 'Logout'
+          route: 'app_logout'
+          roles: [ 'ROLE_USER' ]
